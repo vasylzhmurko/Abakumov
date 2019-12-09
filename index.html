@@ -1,0 +1,56 @@
+<html>
+<head>
+<style>
+body {
+	padding: 10% 0;
+	background: #cfaae5;
+	color: white;
+	text-align: center;
+	font-size: 2em;
+}
+img {
+	margin-top: 5%;
+	width: 50%;
+	box-shadow: 5px 8px 18px #333;
+	border-radius: 7px;
+	transform: rotate(4deg);
+}
+
+</style>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<div id="app" v-on:click="hop">{{message}}<br><img src=""> </div>
+<script>
+var cats = ["https://img1.goodfon.ru/original/800x480/2/85/koshka-kot-kotenok-ryzhiy-yazyk.jpg", "https://mtdata.ru/u18/photoCD26/20795682120-0/original.jpeg", "https://thefancy-media-ec1.thefancy.com/UserImages/original/minniebinnie_b52561461dbe.jpg", "https://cdn.piccollage.com/imageassets/8e423a7aadb6d900e23feecf8190d7d9/original.png", "https://avatars.mds.yandex.net/get-pdb/1769690/3ddd5e51-6823-488d-b077-e295558610cf/s1200?webp=false"];
+var randomNumber = function(min, max){
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+var app = new Vue({
+	el: "#app",
+	data: {
+		message: "Hello, Igor! Click on this message once.",
+		image: ""	
+	},
+	methods: {
+		hop: function(){
+			var _this = this;
+			_this.message = "Thank you!";
+			var img = document.getElementById("app").getElementsByTagName("img")[0];
+			var imgUrl = cats[randomNumber(0,  cats.length-1)];
+			img.src = imgUrl;
+			img.style.transform = "rotate("+randomNumber(0,4)+"deg)";
+			
+			setTimeout(function(){
+				_this.message = "Hello, Igor! Click on this message once.";			
+			}, 3000);
+		}
+	}
+
+});
+
+
+</script>
+</body>
+
+</html>
